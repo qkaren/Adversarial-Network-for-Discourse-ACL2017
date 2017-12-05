@@ -778,7 +778,10 @@ class TrainModel:
                 Oracle.print("!! NaN, break it ...")
                 break
             Oracle.print("----------------\n")
-        Oracle.print(">>>> best of dev and test: %s of %s)" % (best_acc, best_epoch))
+        self.load_models('dev')
+        test_result = self._test_all(data_dt['test'])
+        Oracle.print(">>>> best of dev and epoch: %s of %s)" % (best_acc, best_epoch))
+        Oracle.print(">>>> best of test: %s)" % (test_result))
         return history, best_acc, best_epoch
 
 # =============================================== #
